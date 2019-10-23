@@ -1,0 +1,2 @@
+module ClientsBackoffice::WelcomeHelper
+end
