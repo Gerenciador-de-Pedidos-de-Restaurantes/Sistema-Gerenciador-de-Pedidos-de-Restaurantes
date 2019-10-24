@@ -1,0 +1,50 @@
+<body>
+<div>
+  <div>
+    <h1>Catering System</h1>
+  </div>
+  <div>
+    <div>
+      <span >Login</span>
+      <%= form_with scope: :login, url:logins_path, local:true do |form| %>
+        <div>
+          <span name="cliente">ID or E-mail</span><br>
+          <%= text_field_tag :email, nil, id:"emailLogin", placeholder:"Id or E-mail" %>
+        </div>
+
+        <div>
+          <span name="cliente">Password</span><br>
+          <%= text_field_tag :senha, nil, id:"senhaLogin", type:"password", placeholder:"Password" %>
+        </div>
+
+        <script>selecionarEmailSenha("<%=@email%>","<%=@senha%>")</script>
+
+        <% if(@resultadoLogin != "")
+             valor = ""
+             resultado =@resultadoLogin
+             valorId = "resultadoPositivo"
+             if resultado.split('-')[0] == 'erro'
+               valor = "color: red"
+               resultado = resultado.split('-')[1]
+               valorId = "resultadoNegativo"
+             end
+        %>
+          <span>
+            <%= resultado %>
+          </span>
+        <% end %>
+
+        <div>
+          <button>
+						<span>Sign In</span>
+          </button>
+        </div>
+        <!--cadastra cliente-->
+        <h2><%= link_to 'Sign Up', clientes_path%></h2>
+
+    <% end %>
+    </div>
+  </div>
+</div>
+
+</body>

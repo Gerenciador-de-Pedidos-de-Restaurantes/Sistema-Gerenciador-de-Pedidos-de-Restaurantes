@@ -1,0 +1,10 @@
+
+<div id="masthead">
+  <h1>Senõr Froggy Catering System | Admin</h1>
+  <h2><%= link_to 'Add Staff', funcionarios_path%> |
+    <%= link_to 'Edit Staff',  edit_funcionario_path(Pessoa.get_pessoa_logada.id)%> |
+    <%= link_to 'Delete Staff', funcionario_path(Pessoa.get_pessoa_logada.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %>
+    <%= link_to 'Log out', logins_sair_path %> </h2>
+</div>

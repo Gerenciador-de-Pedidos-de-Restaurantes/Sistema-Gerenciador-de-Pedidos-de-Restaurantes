@@ -1,0 +1,72 @@
+<body>
+<div>
+  <%= render 'padrao/menu' %>
+
+  <% # formulario de cadastramento ..................................... %>
+  <%= form_with model: @funcionario, scope: :funcionario, class:"formulario", local: true do |form| %>
+
+        <span class="titulo_formulario">
+					Add Staff
+				</span>
+
+    <div>
+      <%= form.label :nome %><br>
+      <%= form.text_field :nome,placeholder:"Name" %>
+    </div>
+
+    <div>
+      <%= form.label :identificador%><br>
+      <%= form.text_field :identificador,placeholder:"ID" %>
+    </div>
+
+    <div>
+      <%= form.label :telefone%><br>
+      <%= form.text_field :telefone, placeholder:"Telephone" %>
+    </div>
+
+    <div>
+      <%= form.label :celular %><br>
+      <%= form.text_field :celular, placeholder:"Cellphone" %>
+    </div>
+
+    <div>
+      <%= form.label :email %><br>
+      <%= form.text_field :email, placeholder:"Email (minim 5 chars)" %>
+    </div>
+
+    <div>
+      <%= form.label :senha%><br>
+      <%= form.text_field :senha, type:"password", placeholder:" (mínimo de 5 carecteres)" %>
+    </div>
+
+
+    <div>
+      <%= form.label :cargo%><br>
+      <%= form.text_field :cargo, placeholder:"Digite o um cargo" %>
+    </div>
+
+    <% if(FuncionariosController.getResultadoPositivoFuncionario != "")
+         valor = ""
+         resultado = FuncionariosController.getResultadoPositivoFuncionario
+         if resultado.split('-')[0] == 'erro'
+           valor = "color: red"
+           resultado = resultado.split('-')[1]
+         end
+    %>
+          <span
+            <%= resultado %>
+          </span>
+      <%FuncionariosController.setResultadoPositivoFuncionario("") %>
+    <% end %>
+
+    <div >
+      <button>
+						<span>
+							Adicionar
+						</span>
+      </button>
+    </div>
+    </div>
+  <% end %>
+</div>
+    </body>
