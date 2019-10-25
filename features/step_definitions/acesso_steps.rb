@@ -28,9 +28,9 @@ When("i click on the register button") do
   click_button 'Add'
 end
 
-Then("i see an successful register message") do
-  pending
-end
+#Then("i see an successful register message") do
+  #pending
+#end
 
 Then("i see an empty name error message") do
   expect(page).to have_content('Nome nao pode ser em branco')
@@ -57,11 +57,11 @@ Then("i see an empty phone error message") do
 end
 
 Then("i see an invalid phone length error message") do
-  expect(page).to have_content('Telefone nao pode ser em branco')
+  expect(page).to have_content('Telefone numero com tamanho incorreto')
 end
 
 Then("i see an invalid phone format error message") do
-  expect(page).to have_content('Telefone numero com tamanho incorreto')
+  expect(page).to have_content('Telefone deve ser um numero')
 end
 
 Then("i see an empty cellphone error message") do
@@ -92,20 +92,22 @@ Then("i see an empty password message") do
   expect(page).to have_content('Senha nao pode ser em branco')
 end
 
-Given("i am at admin account page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
+#próxima iteração --------------------------------------------------------
 
-When("i click on delete button") do
-  click_link "d-#{'delete-' +Pessoa.get_pessoa_logada.id}"
-end
+#Given("i am at admin account page") do
+  #pending # Write code here that turns the phrase above into concrete actions
+#end
 
-Then("i see i am at login page") do
-  expect(page).to have_content('Login')
-end
+#When("i click on delete button") do
+  #click_link "d-#{'delete-' +Pessoa.get_pessoa_logada.id}"
+#end
 
-Given ("i am at client account page")do
-  logarComoCliente()
-  visit "/clientes/perfil"
-  expect(page).to have_content('Edit Profile')
-end
+#Then("i see i am at login page") do
+  #expect(page).to have_content('Login')
+#end
+
+#Given ("i am at client account page")do
+  #logarComoCliente()
+  #visit "/clientes/perfil"
+  #expect(page).to have_content('Edit Profile')
+#end
