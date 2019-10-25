@@ -33,12 +33,14 @@
       When i click on the login button
       Then i see an wrong password for this email error message
 
-    Scenario: Valid client log out
-      Given i am at client main page
-      When i click on logout button to logout person with id "00000000000"
-      Then i see i am at login page
+    #próxima iteração --------------------------------------------------------
 
-    Scenario: Valid admin log out
-      Given i am at admin main page
-      When i click on logout button to logout person with id "00000000000"
-      Then i see i am at login page
+    #Scenario: Valid client log out
+      #Given i am at client main page
+      #When i click on logout button to logout person with id "00000000000"
+      #Then i see i am at login page
+
+    #Scenario: Valid admin log out
+      #Given i am at admin main page
+      #When i click on logout button to logout person with id "00000000000"
+      #Then i see i am at login page

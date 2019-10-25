@@ -55,29 +55,31 @@ Then("i see an empty email field error message") do
 end
 
 Then("i see an empty password field error message") do
-  expect(page).to have_content('Preencha o campo de senh')
+  expect(page).to have_content('Preencha o campo de senha')
 end
 
 Then("i see an wrong password for this email error message") do
   expect(page).to have_content('Login Iválido')
 end
 
-Given("i am at client main page") do
-  logarComoCliente()
-  visit "/cliente/perfil"
-  expect(page).to have_content("Edit Profile")
-end
+#próxima iteração --------------------------------------------------------
 
-When("i click on logout button to logout person with id {string}") do |string|
-  click_link("l-#{'logout-'+string}")
-end
+#Given("i am at client main page") do
+  #logarComoCliente()
+  #visit "/cliente/perfil"
+  #expect(page).to have_content("Edit Profile")
+#end
 
-Then("i see i am at login page") do
-  expect(page).to have_content('Login')
-end
+#When("i click on logout button to logout person with id {string}") do |string|
+  #click_link("l-#{'logout-'+string}")
+#end
 
-Given("i am at admin main page") do
-  logarComoFuncionario()
-  visit "/funcionario/perfil"
-  expect(page).to have_content('Senõr Froggy Catering System | Admin')
-end
+#Then("i see i am at login page") do
+  #expect(page).to have_content('Login')
+#end
+
+#Given("i am at admin main page") do
+  #logarComoFuncionario()
+  #visit "/funcionario/perfil"
+  #expect(page).to have_content('Senõr Froggy Catering System | Admin')
+#end
