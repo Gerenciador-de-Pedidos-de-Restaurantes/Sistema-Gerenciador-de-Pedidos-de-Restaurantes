@@ -5,15 +5,15 @@
 
     Scenario: Valid client login
       Given i am at login page
-      When i fill email field "user@gmail.com" and password field "mypassword"
+      When i fill email field "david@gmail.com" and password field "mypassword" as client
       When i click on the login button
-      Then i see an logged in succesfully as a client
+      Then i see i logged in succesfully as a client
 
     Scenario: Valid admin login
       Given i am at login page
-      When i fill email field "user@gmail.com" and password field "admin"
+      When i fill email field "admin@gmail.com" and password field "admin"
       When i click on the login button
-      Then i see an logged in succesfully as a admin
+      Then i see i logged in succesfully as a admin
 
     Scenario: Empty email field
       Given i am at login page
@@ -35,10 +35,10 @@
 
     Scenario: Valid client log out
       Given i am at client main page
-      When i click on logout button
+      When i click on logout button to logout person with id "00000000000"
       Then i see i am at login page
 
     Scenario: Valid admin log out
       Given i am at admin main page
-      When i click on logout button
+      When i click on logout button to logout person with id "00000000000"
       Then i see i am at login page

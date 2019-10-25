@@ -4,7 +4,7 @@
     <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id),
                 method: :delete,
                 data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %>
-    <%= link_to 'Log out', logins_sair_path %> </h2>
+    <%= link_to 'Log out', logins_sair_path, id:"l-#{'logout-'+cliente.identificador}" %> </h2>
 </div>
 
 </body>
