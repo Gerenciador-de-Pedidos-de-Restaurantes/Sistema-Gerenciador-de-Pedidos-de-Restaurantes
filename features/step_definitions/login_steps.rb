@@ -40,17 +40,13 @@ end
 
 When("i click on the login button") do
   click_button 'Sign In'
-
 end
 
 Then("i see i logged in succesfully as a client") do
-  visit "/clientes/perfil"
-  expect(page).to have_content("Edit Profile")
-
+  expect(page).to have_content("Clientes")
 end
 
 Then("i see i logged in succesfully as a admin") do
-  visit "/funcionarios/perfil"
   expect(page).to have_content('Senõr Froggy Catering System | Admin')
 end
 
