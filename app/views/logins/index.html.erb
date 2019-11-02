@@ -1,50 +1,112 @@
+<html>
+<head>
+  <style type="text/css">
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+    .button:hover span {
+      padding-right: 25px;
+    }
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    body{
+      background-image:url(https://png.clipart.me/istock/previews/6155/61558146-food-restaurant-logo-icon.jpg);
+    }
+    form,label {
+      display: block;
+      padding: 10px;
+    }
+    form {
+      width: 300px;
+      margin: 15px;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      left: 37%;
+      top: 30%
+    }
+    label.warning{
+      color: red;
+      text-align: center;
+    }
+    label {
+      color: white;
+      text-align: right;
+    }
+    input {
+      display: inline-block;
+      padding-left: 10px;
+    }
+    h1.estiloLabel{
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
 <body>
-<div>
-  <div>
-    <h1>Catering System</h1>
-  </div>
-  <div>
-    <div>
-      <span >Login</span>
-      <%= form_with scope: :login, url:logins_path, local:true do |form| %>
-        <div>
-          <span name="cliente">ID or E-mail</span><br>
-          <%= text_field_tag :email, nil, id:"emailLogin", placeholder:"Id or E-mail" %>
-        </div>
+<%= form_with scope: :login, url:logins_path, local:true do |form| %>
+  <center>
+    <h1 class="estiloLabel">Login</h1>
+  </center>
+  <span name="cliente">
+      <label>ID or E-mail:
+        <%= text_field_tag :email, nil, id:"emailLogin", placeholder:"Id or E-mail" %>
+      </label>
+    </span><br>
+  <span name="cliente">
+      <label>Password:
+        <%= text_field_tag :senha, nil, id:"senhaLogin", type:"password", placeholder:"Password" %>
+      </label>
+    </span><br>
 
-        <div>
-          <span name="cliente">Password</span><br>
-          <%= text_field_tag :senha, nil, id:"senhaLogin", type:"password", placeholder:"Password" %>
-        </div>
+  <script>selecionarEmailSenha("<%=@email%>","<%=@senha%>")</script>
 
-        <script>selecionarEmailSenha("<%=@email%>","<%=@senha%>")</script>
-
-        <% if(@resultadoLogin != "")
-             valor = ""
-             resultado =@resultadoLogin
-             valorId = "resultadoPositivo"
-             if resultado.split('-')[0] == 'erro'
-               valor = "color: red"
-               resultado = resultado.split('-')[1]
-               valorId = "resultadoNegativo"
-             end
-        %>
-          <span>
-            <%= resultado %>
-          </span>
-        <% end %>
-
-        <div>
-          <button>
-						<span>Sign In</span>
-          </button>
-        </div>
-        <!--cadastra cliente-->
-        <h2><%= link_to 'Sign Up', clientes_path%></h2>
-
-    <% end %>
-    </div>
-  </div>
-</div>
+  <% if(@resultadoLogin != "")
+       valor = ""
+       resultado =@resultadoLogin
+       valorId = "resultadoPositivo"
+       if resultado.split('-')[0] == 'erro'
+         valor = "color: red"
+         resultado = resultado.split('-')[1]
+         valorId = "resultadoNegativo"
+       end
+  %>
+      <label class="warning">
+        <%= resultado %>
+      </label>
+  <% end %>
+  <center>
+    <button class="button" style="vertical-align:middle"><%= link_to 'Sign Up', clientes_path%></button>
+    <button class="button" style="vertical-align:middle"><span>Sign In</span></button>
+  </center>
+<% end %>
 
 </body>
+</html>
