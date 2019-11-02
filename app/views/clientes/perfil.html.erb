@@ -1,11 +1,79 @@
-<body>
-<div>
-  <h1>Clientes</h1>
-  <h2><%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id)%>|
-    <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id),
-                method: :delete,
-                data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %>
-    <%= link_to 'Log out', logins_sair_path%> </h2>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 15px;
+      width: 180px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
 
+    .button {
+      background-color: white;
+      color: black;
+      border: 2px solid #f4511e;
+    }
+
+    .button:hover {
+      background-color: #f4511e;
+      color: white;
+    }
+
+    body{
+      background-image:url(https://png.clipart.me/istock/previews/6155/61558146-food-restaurant-logo-icon.jpg);
+    }
+    form,label {
+      display: block;
+      padding: 10px;
+    }
+    form {
+      width: 800px;
+      height: 160px;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      left: 20%;
+      top: 30%
+    }
+    label.warning{
+      color: red;
+      text-align: center;
+    }
+    label {
+      color: white;
+      text-align: right;
+    }
+    input {
+      display: inline-block;
+      padding-left: 10px;
+    }
+    h1.estiloLabel{
+      text-align: center;
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
+<body>
+<form>
+<h1 class="estiloLabel">Menu Client</h1>
+
+<center>
+<button class="button button"><%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id)%></button>
+<button class="button button"><%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id),
+                                           method: :delete,
+                                           data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %></button>
+<button class="button button"><%= link_to 'Log out', logins_sair_path%></button>
+</center>
+</form>
 </body>
+</html>
