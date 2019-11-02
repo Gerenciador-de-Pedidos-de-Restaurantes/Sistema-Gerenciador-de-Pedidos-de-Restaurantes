@@ -1,38 +1,111 @@
+<html>
+<head>
+  <style type="text/css">
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+    .button:hover span {
+      padding-right: 25px;
+    }
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    body{
+      background-image:url(https://png.clipart.me/istock/previews/6155/61558146-food-restaurant-logo-icon.jpg);
+    }
+    form,label {
+      display: block;
+      padding: 10px;
+    }
+    form {
+      width: 300px;
+      margin: 15px;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      left: 37%;
+    }
+    label.warning{
+      color: red;
+      text-align: center;
+    }
+    label {
+      color: white;
+      text-align: center;
+    }
+    input {
+      display: inline-block;
+      padding-left: 10px;
+    }
+    h1.estiloLabel{
+      text-align: center;
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
 <body>
 <di id="wrap">
   <% # formulario de edicao %>
   <%= form_with model: @cliente, scope: :cliente, local: true do |form| %>
 
-        <span>Editing Profile</span>
+        <h1 class="estiloLabel" >Editio Profile</h1>
 
     <div>
-      <%= form.label :nome, class:"label-elemento_formulario" %><br>
-      <%= form.text_field :nome, placeholder:"Name" %>
+      <label><%= form.label :nome, class:"label-elemento_formulario" %>
+      <%= form.text_field :nome, placeholder:"Name" %></label>
     </div>
 
     <div>
-      <%= form.label :identificador %><br>
-      <%= form.text_field :identificador,placeholder:"ID" %>
+      <label><%= form.label :identificador %>
+      <%= form.text_field :identificador,placeholder:"ID" %></label>
     </div>
 
     <div>
-      <%= form.label :telefone%><br>
-      <%= form.text_field :telefone, placeholder:"Telephone" %>
+      <label><%= form.label :telefone%>
+      <%= form.text_field :telefone, placeholder:"Telephone" %></label>
     </div>
 
     <div>
-      <%= form.label :celular%><br>
-      <%= form.text_field :celular, placeholder:"Cellphone" %>
+      <label><%= form.label :celular%>
+      <%= form.text_field :celular, placeholder:"Cellphone" %></label>
     </div>
 
     <div>
-      <%= form.label :email%><br>
-      <%= form.text_field :email,placeholder:"E-mail (minim de 5 chars)" %>
+      <label><%= form.label :email%>
+      <%= form.text_field :email,placeholder:"E-mail (minim de 5 chars)" %></label>
     </div>
 
     <div>
-      <%= form.label :senha%><br>
-      <%= form.text_field :senha, type:"password", placeholder:"Password (minim 5 chars)" %>
+      <label><%= form.label :senha%>
+      <%= form.text_field :senha, type:"password", placeholder:"Password (minim 5 chars)" %></label>
     </div>
 
 
@@ -44,18 +117,21 @@
            resultado = resultado.split('-')[1]
          end
     %>
-          <span>
+          <label class="warning">
             <%= resultado %>
-          </span>
+          </label>
       <%ClientesController.setResultadoPositivoCliente("") %>
     <% end %>
 
-    <div>
-      <button>
+    <div><br>
+      <center>
+      <button class="button" style="vertical-align:middle"><%= link_to 'return', clientes_perfil_path, id:"d-#{'edit-'+(Pessoa.get_pessoa_logada.id).to_s}"%></button>
+      <button class="button" style="vertical-align:middle">
 						<span>
-							Atualizar
+							Update
 						</span>
       </button>
+      </center>
     </div>
 
     <% if @cliente.errors.any? %>
@@ -73,6 +149,7 @@
     <% end %>
 
   <% end %>
-  <button ><%= link_to 'Voltar', clientes_perfil_path, id:"d-#{'edit-'+(Pessoa.get_pessoa_logada.id).to_s}"%></button>
+
 </di>
 </body>
+</html>
