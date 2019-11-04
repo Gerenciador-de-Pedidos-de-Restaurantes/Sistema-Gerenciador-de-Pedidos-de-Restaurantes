@@ -10,9 +10,9 @@ one:
   identificador: MyString1
   telefone: MyString1
   celular: MyString1
-  email: tes1@gmail.com
+  email: test1@gmail.com
   senha: MyString1
-  tipo: 1
+  tipo: 0
   inativo: 0
 
 
@@ -22,7 +22,7 @@ two:
   identificador: MyString2
   telefone: MyString2
   celular: MyString2
-  email: tes2@gmail.com
+  email: test2@gmail.com
   senha: MyString2
-  tipo: 1
+  tipo: 0
   inativo: 0
