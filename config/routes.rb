@@ -14,10 +14,13 @@ Rails.application.routes.draw do
 
   get 'funcionarios/perfil'
 
+  get 'funcionarios/menus'
+
   resources :contums
   resources :funcionarios
   resources :clientes
   resources :logins
+  resources :menus
 
   root 'logins#index'
 end

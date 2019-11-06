@@ -1,0 +1,13 @@
+<h1>Listing Menus</h1>
+
+<table>
+  <% @menus.each do |menu| %>
+  <tr>
+    <td><%= link_to menu.title,  menu_path(menu)%></td>
+    <td><%= menu.description %></td>
+    <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
+    <td><%= link_to 'Delete', menu_path(menu), method: :delete%></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to 'Add', new_menu_path %>
