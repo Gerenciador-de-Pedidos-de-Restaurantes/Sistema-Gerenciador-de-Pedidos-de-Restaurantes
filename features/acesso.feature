@@ -7,7 +7,7 @@ Feature: acess
     Given i am at register page
     When i fill name field "Will" id field "00000000000" phone field "9999999999" cellphone field "8888888888" email field "user@gmail.com" password field "mypassword"
     And i click on the register button
-    #Then i see an successful register message
+    Then i see an successful register message
 
   Scenario: Empty name field
     Given i am at register page

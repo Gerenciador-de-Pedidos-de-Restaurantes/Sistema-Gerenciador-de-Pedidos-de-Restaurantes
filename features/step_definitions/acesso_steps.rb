@@ -28,9 +28,9 @@ When("i click on the register button") do
   click_button 'Add'
 end
 
-#Then("i see an successful register message") do
-  #pending
-#end
+Then("i see an successful register message") do
+  expect(page).to have_content('Cliente Salvo com Sucesso')
+end
 
 Then("i see an empty name error message") do
   expect(page).to have_content('Nome nao pode ser em branco')

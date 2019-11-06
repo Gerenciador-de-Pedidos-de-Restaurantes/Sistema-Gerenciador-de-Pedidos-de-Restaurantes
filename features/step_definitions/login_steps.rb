@@ -43,7 +43,7 @@ When("i click on the login button") do
 end
 
 Then("i see i logged in succesfully as a client") do
-  expect(page).to have_content("Clientes")
+  expect(page).to have_content("Menu Client")
 end
 
 Then("i see i logged in succesfully as a admin") do

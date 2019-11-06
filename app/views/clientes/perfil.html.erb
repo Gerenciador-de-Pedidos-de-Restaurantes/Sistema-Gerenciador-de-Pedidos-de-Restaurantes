@@ -69,7 +69,7 @@
 
 <center>
 <button class="button button"><%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id)%></button>
-<button class="button button"><%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id),
+<button class="button button"><%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id)
                                            method: :delete,
                                            data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %></button>
 <button class="button button"><%= link_to 'Log out', logins_sair_path%></button>
