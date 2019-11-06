@@ -43,11 +43,14 @@ class ClientesController < ApplicationController
     @cliente.tipo = 0
     @cliente.inativo = 0
 
-    if @cliente.save
-      @@resultadoPositivoCliente = "Cliente Salvo"
-      redirect_to
-    else
-      render 'clientes/index'
+    respond_to do |format|
+      if @cliente.save
+        format.html { redirect_to clientes_path, notice: 'Cliente Salvo com Sucesso' }
+        format.json { render :show, status: :created, location: @menu }
+      else
+        format.html { render :index }
+        format.json { render json: @menu.errors, status: :unprocessable_entity }
+      end
     end
   end
 

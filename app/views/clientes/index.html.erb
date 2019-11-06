@@ -115,22 +115,8 @@
 
         <div>
           <label><%= form.label 'Password'%>
-          <%= form.text_field :senha, type:"password", placeholder:"Password (minim5 chars)" %></label>
+          <%= form.text_field :senha, type:"password", placeholder:"Password (minim 5 chars)" %></label>
         </div>
-
-        <% if(ClientesController.getResultadoPositivoCliente != "")
-             valor = ""
-             resultado = ClientesController.getResultadoPositivoCliente
-          if resultado.split('-')[0] == 'erro'
-            valor = "color: red"
-            resultado = resultado.split('-')[1]
-          end
-        %>
-          <span>
-            <%= resultado %>
-          </span>
-          <%ClientesController.setResultadoPositivoCliente("") %>
-        <% end %>
 
         <br><center>
           <button class="button" style="vertical-align:middle"><%= link_to 'Sign in', logins_index_path%></button>
@@ -150,6 +136,8 @@
             </ul>
           </div>
         <% end %>
+
+      <p id="notice"><%= notice %></p>
 
       <% end %>
 
