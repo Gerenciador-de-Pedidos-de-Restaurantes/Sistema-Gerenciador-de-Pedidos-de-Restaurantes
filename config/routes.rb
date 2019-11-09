@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   #post 'menus/order'
   put 'menus/order'
 
+  put 'menus/add_item'
+
   resources :contums
   resources :funcionarios
   resources :clientes

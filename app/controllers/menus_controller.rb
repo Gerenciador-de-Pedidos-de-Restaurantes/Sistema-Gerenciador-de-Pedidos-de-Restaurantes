@@ -1,4 +1,5 @@
 class MenusController < ApplicationController
+  protect_from_forgery with: :null_session
   #lista todos os menus
   def index
     @menus = Menu.all
@@ -7,8 +8,7 @@ class MenusController < ApplicationController
   #abre o menu com id selecionado
   def show
     @menu = Menu.find(params[:id])
-    @menu.item << 'casa'
-    @menu.item << 'carro'
+    @@menu_atual = @menu
   end
 
   def edit
@@ -54,6 +54,16 @@ class MenusController < ApplicationController
   def order
     params[:id_itens]
     redirect_to menus_path
+  end
+
+  def add_item
+    @item = params[:new_item]
+    if @item != ''
+      @@menu_atual.item << @item
+      @@menu_atual.item.uniq
+      @@menu_atual.save
+    end
+    redirect_to request.referrer
   end
 
   private
