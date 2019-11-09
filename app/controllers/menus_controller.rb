@@ -7,6 +7,8 @@ class MenusController < ApplicationController
   #abre o menu com id selecionado
   def show
     @menu = Menu.find(params[:id])
+    @menu.item << 'casa'
+    @menu.item << 'carro'
   end
 
   def edit
@@ -45,6 +47,12 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @menu.destroy
 
+    redirect_to menus_path
+  end
+
+  #realiza o pedido
+  def order
+    params[:id_itens]
     redirect_to menus_path
   end
 

@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   get 'funcionarios/menus'
 
+  #post 'menus/order'
+  put 'menus/order'
+
   resources :contums
   resources :funcionarios
   resources :clientes

@@ -8,4 +8,22 @@
   <%= @menu.description %>
 </p>
 
+<p>
+  <strong>Item:</strong>
+  <%= @menu.item %>
+</p>
+
+------------------------------------------------
+<%= form_tag menus_order_path, :method => :put do %>
+  <table>
+    <% (@menu.item).each do |item| %>
+      <tr>
+        <td><%= check_box_tag 'id_itens[]',item%></td>
+        <td><%=item%></td>
+      </tr>
+    <% end %>
+  </table>
+<%=  button_to  'Order' %>
+<%end %>
+
 <%= link_to 'Back', menus_path %>
