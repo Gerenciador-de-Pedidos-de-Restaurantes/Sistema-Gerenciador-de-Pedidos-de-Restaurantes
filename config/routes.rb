@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   put 'menus/add_item'
 
+  put 'menus/delete_item'
+
   resources :contums
   resources :funcionarios
   resources :clientes

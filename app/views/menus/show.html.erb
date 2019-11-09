@@ -3,16 +3,16 @@
   <%= @menu.title %>
 </p>
 
-<%= form_tag menus_order_path, :method => :put do %>
+<%= form_tag menus_delete_item_path , :method => :put do %>
   <table>
     <% (@menu.item).each do |item| %>
       <tr>
-        <td><%= check_box_tag 'id_itens[]',item%></td>
+        <td><%= check_box_tag 'id_itens[]', item%></td>
         <td><%=item%></td>
       </tr>
     <% end %>
   </table>
-<%=  button_to  'Order' %>
+<%=  button_to  'Delete' %>
 <%end %>
 
 <!---adicionar item:--->

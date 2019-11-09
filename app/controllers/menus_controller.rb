@@ -66,6 +66,17 @@ class MenusController < ApplicationController
     redirect_to request.referrer
   end
 
+  def delete_item
+    itens_atuais = params[:id_itens]
+    if itens_atuais != nil
+      itens_atuais.each do |i|
+        (@@menu_atual.item).delete(i)
+      end
+      @@menu_atual.save
+    end
+    redirect_to request.referrer
+  end
+
   private
   def menu_params
     params.require(:menu).permit(:title, :description)
