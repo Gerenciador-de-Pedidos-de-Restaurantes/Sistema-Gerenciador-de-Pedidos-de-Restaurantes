@@ -6,5 +6,6 @@
     <%= link_to 'Delete Staff', funcionario_path(Pessoa.get_pessoa_logada.id),
                 method: :delete,
                 data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %>
+    <%= link_to 'Menus', menus_path %>
     <%= link_to 'Log out', logins_sair_path%> </h2>
 </div>
