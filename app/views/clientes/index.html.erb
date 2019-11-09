@@ -14,6 +14,7 @@
       transition: all 0.5s;
       cursor: pointer;
       margin: 5px;
+      text-decoration: none;
     }
 
     .button span {
@@ -77,6 +78,11 @@
       font-style:italic;
       color:white;
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -119,7 +125,7 @@
         </div>
 
         <br><center>
-          <button class="button" style="vertical-align:middle"><%= link_to 'Sign in', logins_index_path%></button>
+          <%= link_to 'Sign in', logins_index_path, class: 'button', style:'height: 23px;'%>
           <button class="button" style="vertical-align:middle"><span>Add</span></button>
         </center>
 
@@ -129,7 +135,7 @@
               <%= pluralize(@cliente.errors.count, "erros") %>
               antes de criar o cliente:
             </h2>
-            <>
+            <ul>
               <% @cliente.errors.full_messages.each do |msg| %>
               <center><label class="warning">-<%= msg %></label></center>
               <% end %>
@@ -137,10 +143,10 @@
           </div>
         <% end %>
 
-      <p id="notice"><%= notice %></p>
+      <p id="notice"><label class="notice"><%= notice %></label></p>
 
       <% end %>
 
 </div>
 </body>
-</html>>
+</html>

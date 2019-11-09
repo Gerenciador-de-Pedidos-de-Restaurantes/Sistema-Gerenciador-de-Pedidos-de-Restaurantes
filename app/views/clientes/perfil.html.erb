@@ -15,6 +15,7 @@
       transition: all 0.5s;
       cursor: pointer;
       margin: 5px;
+      text-decoration: none;
     }
 
     .button {
@@ -68,11 +69,11 @@
 <h1 class="estiloLabel">Menu Client</h1>
 
 <center>
-<button class="button button"><%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id)%></button>
-<button class="button button"><%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id)
+                              <%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button'%>
+                              <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button',
                                            method: :delete,
-                                           data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}" %></button>
-<button class="button button"><%= link_to 'Log out', logins_sair_path%></button>
+                                           data: { confirm: 'Are you sure?' },id:"d-#{+(Pessoa.get_pessoa_logada.id).to_s}" %>
+                              <%= link_to 'Log Out', logins_sair_path, style:'color: navy;',class: 'button'%>
 </center>
 </form>
 </body>

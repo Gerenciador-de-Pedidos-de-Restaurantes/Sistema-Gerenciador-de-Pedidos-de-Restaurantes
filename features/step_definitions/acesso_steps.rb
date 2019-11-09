@@ -1,3 +1,5 @@
+respond_to? :js, :html
+
 def logarComoCliente()
   Pessoa.set_pessoa_logada(nome:'david', identificador:'00000000000', telefone:'5555555555', celular:'4444444444',
                  email:'david@gmail.com', senha:'123456',
@@ -12,8 +14,6 @@ def preencher(string, string2, string3, string4, string5, string6)
   fill_in 'cliente[email]', :with => string5
   fill_in 'cliente[senha]', :with => string6
 end
-
-
 
 Given("i am at register page") do
   visit "/clientes"
@@ -92,22 +92,41 @@ Then("i see an empty password message") do
   expect(page).to have_content('Senha nao pode ser em branco')
 end
 
-#próxima iteração --------------------------------------------------------
+Given("i am at user of login {string} update page") do |string|
+  visit "/clientes"
+  expect(page).to have_content('Sign Up')
+  preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
+  click_button 'Add'
+  visit "/logins"
+  fill_in 'email', :with => string
+  fill_in 'senha', :with => '12345'
+  click_button 'Sign In'
+  click_link 'Edit Profile'
+end
 
-#Given("i am at admin account page") do
-  #pending # Write code here that turns the phrase above into concrete actions
-#end
+When("i click on the update button") do
+  click_button 'Update'
+end
 
-#When("i click on delete button") do
-  #click_link "d-#{'delete-' +Pessoa.get_pessoa_logada.id}"
-#end
+Then("i see an successful update message") do
+  expect(page).to have_content('Cliente Atualizado com Sucesso')
+end
 
-#Then("i see i am at login page") do
-  #expect(page).to have_content('Login')
-#end
+Given("i am at user with login {string} account page") do |string|
+  visit "/clientes"
+  expect(page).to have_content('Sign Up')
+  preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
+  click_button 'Add'
+  visit "/logins"
+  fill_in 'email', :with => string
+  fill_in 'senha', :with => '12345'
+  click_button 'Sign In'
+end
 
-#Given ("i am at client account page")do
-  #logarComoCliente()
-  #visit "/clientes/perfil"
-  #expect(page).to have_content('Edit Profile')
-#end
+When("i click on delete button") do
+  click_link 'Delete Profile'
+end
+
+Then("i see a user deleted sucessfuly message") do
+  expect(page).to have_content('Cliente Removido com Sucesso')
+end

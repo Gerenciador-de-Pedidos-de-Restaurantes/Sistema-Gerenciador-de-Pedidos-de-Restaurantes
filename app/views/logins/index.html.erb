@@ -14,6 +14,7 @@
       transition: all 0.5s;
       cursor: pointer;
       margin: 5px;
+      text-decoration: none;
     }
     .button span {
       cursor: pointer;
@@ -68,6 +69,11 @@
       font-style:italic;
       color:white;
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -103,9 +109,11 @@
       </label>
   <% end %>
   <center>
-    <button class="button" style="vertical-align:middle"><%= link_to 'Sign Up', clientes_path%></button>
+    <%= link_to 'Sign Up', clientes_path, class: 'button', style:'height: 23px;'%>
     <button class="button" style="vertical-align:middle"><span>Sign In</span></button>
   </center>
+
+  <p id="notice"><label class="notice"><%= notice %></label></p>
 <% end %>
 
 </body>

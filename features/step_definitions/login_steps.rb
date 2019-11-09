@@ -62,24 +62,30 @@ Then("i see an wrong password for this email error message") do
   expect(page).to have_content('Login Iválido')
 end
 
-#próxima iteração --------------------------------------------------------
+Given("i am at client with login {string} main page") do |string|
+  visit "/clientes"
+  expect(page).to have_content('Sign Up')
+  preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
+  click_button 'Add'
+  visit "/logins"
+  fill_in 'email', :with => string
+  fill_in 'senha', :with => '12345'
+  click_button 'Sign In'
+end
 
-#Given("i am at client main page") do
-  #logarComoCliente()
-  #visit "/cliente/perfil"
-  #expect(page).to have_content("Edit Profile")
-#end
+Given ("i am at admin with login {string} and password {string} main page") do |string1, string2|
+  visit "/clientes"
+  expect(page).to have_content('Sign Up')
+  visit "/logins"
+  fill_in 'email', :with => string1
+  fill_in 'senha', :with => string2
+  click_button 'Sign In'
+end
 
-#When("i click on logout button to logout person with id {string}") do |string|
-  #click_link("l-#{'logout-'+string}")
-#end
+When("i click on logout button") do
+  click_link "Log Out"
+end
 
-#Then("i see i am at login page") do
-  #expect(page).to have_content('Login')
-#end
-
-#Given("i am at admin main page") do
-  #logarComoFuncionario()
-  #visit "/funcionario/perfil"
-  #expect(page).to have_content('Senõr Froggy Catering System | Admin')
-#end
+Then("i see i am at login page") do
+  expect(page).to have_content('Login')
+end

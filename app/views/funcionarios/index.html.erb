@@ -45,19 +45,6 @@
       <%= form.text_field :cargo, placeholder:"Digite o um cargo" %>
     </div>
 
-    <% if(FuncionariosController.getResultadoPositivoFuncionario != "")
-         valor = ""
-         resultado = FuncionariosController.getResultadoPositivoFuncionario
-         if resultado.split('-')[0] == 'erro'
-           valor = "color: red"
-           resultado = resultado.split('-')[1]
-         end
-    %>
-          <span
-            <%= resultado %>
-          </span>
-      <%FuncionariosController.setResultadoPositivoFuncionario("") %>
-    <% end %>
 
     <div >
       <button>

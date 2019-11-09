@@ -14,6 +14,7 @@
       transition: all 0.5s;
       cursor: pointer;
       margin: 5px;
+      text-decoration: none;
     }
 
     .button span {
@@ -69,6 +70,10 @@
       font-style:italic;
       color:white;
     }
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -76,7 +81,7 @@
   <% # formulario de edicao %>
   <%= form_with model: @cliente, scope: :cliente, local: true do |form| %>
 
-        <h1 class="estiloLabel" >Editio Profile</h1>
+        <h1 class="estiloLabel" >Update Profile</h1>
 
     <div>
       <label><%= form.label :nome, class:"label-elemento_formulario" %>
@@ -109,23 +114,9 @@
     </div>
 
 
-    <% if(ClientesController.getResultadoPositivoCliente != "")
-         valor = ""
-         resultado = ClientesController.getResultadoPositivoCliente
-         if resultado.split('-')[0] == 'erro'
-           valor = "color: red"
-           resultado = resultado.split('-')[1]
-         end
-    %>
-          <label class="warning">
-            <%= resultado %>
-          </label>
-      <%ClientesController.setResultadoPositivoCliente("") %>
-    <% end %>
-
     <div><br>
       <center>
-      <button class="button" style="vertical-align:middle"><%= link_to 'return', clientes_perfil_path, id:"d-#{'edit-'+(Pessoa.get_pessoa_logada.id).to_s}"%></button>
+      <%= link_to 'return', clientes_perfil_path, id:"d-#{'edit-'+(Pessoa.get_pessoa_logada.id).to_s}", class:'button', style:'height: 23px;' %>
       <button class="button" style="vertical-align:middle">
 						<span>
 							Update
@@ -137,16 +128,19 @@
     <% if @cliente.errors.any? %>
       <div>
         <h2>
-          <%= pluralize(@cliente.errors.count, "erros") %>
-          antes de criar o cliente:
+          <label class="warning"><%= pluralize(@cliente.errors.count, "erros") %></label>
+          <label class="warning">antes de atualizar o cliente:</label>
         </h2>
+        <>
         <ul>
           <% @cliente.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+            <center><label class="warning">-<%= msg %></label></center>
           <% end %>
         </ul>
       </div>
     <% end %>
+
+    <p id="notice"><label class="notice"><%= notice %></label></p>
 
   <% end %>
 
