@@ -3,9 +3,21 @@
   <%= @menu.title %>
 </p>
 
-<p>
-  <strong>Text:</strong>
-  <%= @menu.description %>
-</p>
+<%= form_tag menus_delete_item_path , :method => :put do %>
+  <table>
+    <% (@menu.item).each do |item| %>
+      <tr>
+        <td><%= check_box_tag 'id_itens[]', item%></td>
+        <td><%=item%></td>
+      </tr>
+    <% end %>
+  </table>
+<%=  button_to  'Delete' %>
+<%end %>
 
+<!---adicionar item:--->
+<%= form_tag menus_add_item_path, model: @menu, :method => :put do %>
+  <%= text_field_tag 'new_item' %>
+  <%=  button_to  'Add Item' %>
+<%end %>
 <%= link_to 'Back', menus_path %>
