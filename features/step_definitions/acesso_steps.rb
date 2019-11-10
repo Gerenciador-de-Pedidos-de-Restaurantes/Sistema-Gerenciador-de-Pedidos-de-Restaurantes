@@ -25,7 +25,7 @@ When("i fill name field {string} id field {string} phone field {string} cellphon
 end
 
 When("i click on the register button") do
-  click_button 'Add'
+  click_button 'Create Cliente'
 end
 
 Then("i see an successful register message") do
@@ -96,7 +96,7 @@ Given("i am at user of login {string} update page") do |string|
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
   fill_in 'email', :with => string
   fill_in 'senha', :with => '12345'
@@ -105,7 +105,7 @@ Given("i am at user of login {string} update page") do |string|
 end
 
 When("i click on the update button") do
-  click_button 'Update'
+  click_button 'Update Cliente'
 end
 
 Then("i see an successful update message") do
@@ -116,7 +116,7 @@ Given("i am at user with login {string} account page") do |string|
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
   fill_in 'email', :with => string
   fill_in 'senha', :with => '12345'
