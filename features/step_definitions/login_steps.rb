@@ -24,7 +24,7 @@ Given("i am at login page") do
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher("david", "22222222222", "5555555555", "4444444444", "david@gmail.com", "mypassword")
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
 end
 
@@ -66,7 +66,7 @@ Given("i am at client with login {string} main page") do |string|
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
   fill_in 'email', :with => string
   fill_in 'senha', :with => '12345'

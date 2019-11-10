@@ -66,15 +66,15 @@
 </head>
 <body>
 <form>
-<h1 class="estiloLabel">Menu Client</h1>
+  <h1 class="estiloLabel">Menu Client</h1>
 
-<center>
-  <%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button'%>
-  <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button',
-                                           method: :delete,
-                                           data: { confirm: 'Are you sure?' },id:"d-#{+(Pessoa.get_pessoa_logada.id).to_s}" %>
-  <%= link_to 'Log Out', logins_sair_path, style:'color: navy;',class: 'button'%>
-</center>
+  <center>
+    <%= link_to 'Edit Profile', edit_cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button'%>
+    <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button',
+                method: :delete,
+                data: { confirm: 'Are you sure?' },id:"d-#{+(Pessoa.get_pessoa_logada.id).to_s}" %>
+    <%= link_to 'Log Out', logins_sair_path, style:'color: navy;',class: 'button'%>
+  </center>
 </form>
 </body>
 </html>
