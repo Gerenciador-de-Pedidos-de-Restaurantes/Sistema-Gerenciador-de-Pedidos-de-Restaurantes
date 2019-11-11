@@ -1,0 +1,2 @@
+module MenuscHelper
+end

@@ -1,0 +1,26 @@
+<%= form_tag menusc_send_order_path :method => :put do %>
+  <p>Adress For Delivery</p>
+  <p>
+    <%= label :street, 'street' %><br>
+    <%= text_field :street,'street' %>
+  </p>
+
+  <p>
+    <%= label :block, 'block' %><br>
+    <%= text_field :block , 'block'%>
+  </p>
+
+  <p>
+    <%= label :number , 'number'%><br>
+    <%= number_field :number, 'number' %>
+  </p>
+
+  <p>
+    <%= label :adicional_info, 'adicional_info' %><br>
+    <%= text_area :adicional_info , 'adicional_info'%>
+  </p>
+
+  <p>
+    <%= submit_tag 'send' %>
+  </p>
+<%end %>

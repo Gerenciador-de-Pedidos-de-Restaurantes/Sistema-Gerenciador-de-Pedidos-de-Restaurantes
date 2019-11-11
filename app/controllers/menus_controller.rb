@@ -50,12 +50,6 @@ class MenusController < ApplicationController
     redirect_to menus_path
   end
 
-  #realiza o pedido
-  def order
-    params[:id_itens]
-    redirect_to menus_path
-  end
-
   def add_item
     @item = params[:new_item]
     if @item != ''

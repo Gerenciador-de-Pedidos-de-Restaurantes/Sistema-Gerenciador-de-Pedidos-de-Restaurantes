@@ -17,17 +17,33 @@ Rails.application.routes.draw do
   get 'funcionarios/menus'
 
   #post 'menus/order'
-  put 'menus/order'
 
   put 'menus/add_item'
 
   put 'menus/delete_item'
+
+#-----------------------------------------------
+  put 'menusc/order'
+  post 'menusc/order'
+
+  put 'menusc/adress'
+
+  put 'menusc/send_order'
+  post 'menusc/send_order'
+
+  post 'menusc/adress'
+  get '/menusc/adress'
+
+
+
+
 
   resources :contums
   resources :funcionarios
   resources :clientes
   resources :logins
   resources :menus
+  resources :menusc
 
   root 'logins#index'
 end
