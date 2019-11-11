@@ -73,7 +73,7 @@
   <%= link_to 'Delete Profile', cliente_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button',
                                            method: :delete,
                                            data: { confirm: 'Are you sure?' },id:"d-#{+(Pessoa.get_pessoa_logada.id).to_s}" %>
-  <%= link_to 'Menus', menuc_path%>
+  <%= link_to 'Menus', menusc_index_path%>
   <%= link_to 'Log Out', logins_sair_path, style:'color: navy;',class: 'button'%>
 </center>
 </form>
