@@ -17,7 +17,7 @@ class LoginsController < ApplicationController
     senha = params[:senha]
     if validarDados(email, senha)
       pessoa = Pessoa.login(email, senha)
-      if pessoa == nil
+      if pessoa.nil?
         @email = email
         @senha = senha
         @resultadoLogin = "erro-Login Iválido"
@@ -54,7 +54,7 @@ class LoginsController < ApplicationController
 
   def verificarCampoVazioOuNulo string
     resultado = false
-    if string == nil || string == ''
+    if string.nil? || string == ''
       resultado = true
     end
     resultado

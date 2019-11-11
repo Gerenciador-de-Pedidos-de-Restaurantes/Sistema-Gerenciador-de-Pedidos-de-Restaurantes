@@ -10,12 +10,12 @@ class Cliente < Pessoa
     resultado << cliente
   end
   pesquisaCpfs.each do |cliente|
-    if(!resultado.index(cliente))
+    unless(resultado.index(cliente))
       resultado << cliente
     end
   end
   pesquisaNomes.each do |cliente|
-    if(!resultado.index(cliente))
+    unless(resultado.index(cliente))
       resultado << cliente
     end
   end
