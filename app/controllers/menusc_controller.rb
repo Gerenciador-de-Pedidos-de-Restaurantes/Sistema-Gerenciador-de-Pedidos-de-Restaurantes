@@ -1,4 +1,4 @@
-class MenuscController < ApplicationController
+class MenuscController < ApplicationController  #controller dos cardapios de cliente
   protect_from_forgery with: :null_session
   #lista todos os menus
   def index
