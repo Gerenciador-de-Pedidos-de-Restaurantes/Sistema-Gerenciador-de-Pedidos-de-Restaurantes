@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - bundle exec rake db:create:all
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - ruby -Itest test/models/cliente_test.rb
+  - ruby -Itest test/models/funcionario_test.rb
+  - ruby -Itest test/models/menu_test.rb
+
+services:
+  - postgresql
