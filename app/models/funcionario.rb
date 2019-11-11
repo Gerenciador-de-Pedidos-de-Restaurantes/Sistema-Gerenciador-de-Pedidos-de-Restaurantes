@@ -11,12 +11,12 @@ class Funcionario < Pessoa
       resultado << funcionario
     end
     pesquisaCpfs.each do |funcionario|
-      if(!resultado.index(funcionario))
+      unless(resultado.index(funcionario))
         resultado << funcionario
       end
     end
     pesquisaNomes.each do |funcionario|
-      if(!resultado.index(funcionario))
+      unless(resultado.index(funcionario))
         resultado << funcionario
       end
     end

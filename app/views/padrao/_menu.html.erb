@@ -37,7 +37,7 @@
       padding: 10px;
     }
     box {
-      width: 1000px;
+      width: 1200px;
       height: 160px;
       background-color: rgba(0, 0, 0, 0.9);
       position: absolute;
@@ -70,11 +70,11 @@
   <center>
     <div id="masthead">
       <h1 class="estiloLabel">Senõr Froggy Catering System | Admin</h1>
+        <%= link_to 'Menu', menus_path, style:'color: navy;',class:'button' %>
         <%= link_to 'Add Staff', funcionarios_path, style:'color: navy;',class:'button'%> |
         <%= link_to 'Edit Staff',  edit_funcionario_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button'%> |
         <%= link_to 'Delete Staff', funcionario_path(Pessoa.get_pessoa_logada.id), style:'color: navy;',class:'button',
             method: :delete, data: { confirm: 'Are you sure?' },id:"d-#{'delete-'+(Pessoa.get_pessoa_logada.id).to_s}"%> |
-        <%= link_to 'Menu', menus_path %>
         <%= link_to 'Log Out', logins_sair_path, style:'color: navy;',class:'button'%>
     </div>
 </center>

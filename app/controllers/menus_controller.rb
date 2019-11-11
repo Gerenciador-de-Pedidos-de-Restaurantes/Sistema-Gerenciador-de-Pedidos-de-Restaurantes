@@ -62,7 +62,7 @@ class MenusController < ApplicationController
 
   def delete_item
     itens_atuais = params[:id_itens]
-    if itens_atuais != nil
+    if !itens_atuais.nil?
       itens_atuais.each do |i|
         (@@menu_atual.item).delete(i)
       end
