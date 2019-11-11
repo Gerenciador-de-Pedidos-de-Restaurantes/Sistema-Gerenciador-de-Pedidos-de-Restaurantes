@@ -1,0 +1,8 @@
+<table>
+  <% @menus.each do |menu| %>
+    <tr>
+      <td><%= link_to menu.title,  menusc_path(menu)%></td>
+      <td><%= menu.description %></td>
+    </tr>
+  <% end %>
+</table>
