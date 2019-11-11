@@ -27,8 +27,9 @@ class FuncionariosController < ApplicationController
         format.html { redirect_to edit_funcionario_path, notice: 'Funcionario Atualizado Com Sucesso' }
         format.json { render :edit, status: :ok, location: @funcionario }
       else
-        format.html { render :edit }
+        format.html {render :edit}
       end
+
     end
   end
 
@@ -38,7 +39,7 @@ class FuncionariosController < ApplicationController
     @funcionario.inativo = 0
 
     respond_to do |format|
-      if @funcionario.cargo.downcase == "gerente"
+      if (@funcionario.cargo.downcase == "gerente")
         format.html { redirect_to funcionarios_path, notice: '-Sistema Já Possui Um Gerente' }
         format.json { render :index, status: :ok, location: @funcionario }
       elsif @funcionario.save
@@ -56,7 +57,7 @@ class FuncionariosController < ApplicationController
     #@funcionario.inativo = 1
     @funcionario.destroy
     respond_to do |format|
-      format.html { redirect_to logins_url, notice: 'Funcionario Deletado Com Sucesso' }
+      format.html { redirect_to logins_url, notice: 'Funcionario Removido Com Sucesso' }
       format.json { head :no_content }
     end
   end
