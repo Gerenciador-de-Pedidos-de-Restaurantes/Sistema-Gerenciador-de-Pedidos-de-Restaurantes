@@ -1,9 +1,23 @@
 respond_to? :js, :html
 
-def logarComoCliente()
-  Pessoa.set_pessoa_logada(nome:'david', identificador:'00000000000', telefone:'5555555555', celular:'4444444444',
-                 email:'david@gmail.com', senha:'123456',
-                 tipo:0, inativo: 0)
+def entrarPagCadastAdmin()
+  visit "/logins"
+  fill_in 'email', :with => 'admin@gmail.com'
+  fill_in 'senha', :with => 'admin'
+  click_button 'Sign In'
+  click_link 'Add Staff'
+end
+
+def logInNewAdmin(string)
+  entrarPagCadastAdmin()
+  string2 = '12345'
+  preencherAdmin('david','33333333333','0000000000','9999999999',string,string2,'cozinheiro')
+  click_button 'Create'
+  click_link 'Return'
+  click_link 'Log Out'
+  fill_in 'email', :with => string
+  fill_in 'senha', :with => string2
+  click_button 'Sign In'
 end
 
 def preencher(string, string2, string3, string4, string5, string6)
@@ -13,6 +27,16 @@ def preencher(string, string2, string3, string4, string5, string6)
   fill_in 'cliente[celular]', :with => string4
   fill_in 'cliente[email]', :with => string5
   fill_in 'cliente[senha]', :with => string6
+end
+
+def preencherAdmin(string, string2, string3, string4, string5, string6, string7)
+  fill_in 'funcionario[nome]', :with => string
+  fill_in 'funcionario[identificador]', :with => string2
+  fill_in 'funcionario[telefone]', :with => string3
+  fill_in 'funcionario[celular]', :with => string4
+  fill_in 'funcionario[email]', :with => string5
+  fill_in 'funcionario[senha]', :with => string6
+  fill_in 'funcionario[cargo]', :with => string7
 end
 
 Given("i am at register page") do
@@ -25,10 +49,10 @@ When("i fill name field {string} id field {string} phone field {string} cellphon
 end
 
 When("i click on the register button") do
-  click_button 'Add'
+  click_button 'Create'
 end
 
-Then("i see an successful register message") do
+Then("i see an client registered successfuly message") do
   expect(page).to have_content('Cliente Salvo com Sucesso')
 end
 
@@ -96,7 +120,7 @@ Given("i am at user of login {string} update page") do |string|
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
   fill_in 'email', :with => string
   fill_in 'senha', :with => '12345'
@@ -112,11 +136,11 @@ Then("i see an successful update message") do
   expect(page).to have_content('Cliente Atualizado com Sucesso')
 end
 
-Given("i am at user with login {string} account page") do |string|
+Given("i am at client with login {string} account page") do |string|
   visit "/clientes"
   expect(page).to have_content('Sign Up')
   preencher('david', '11111111111', '1234567890', '9876543210', string, '12345')
-  click_button 'Add'
+  click_button 'Create Cliente'
   visit "/logins"
   fill_in 'email', :with => string
   fill_in 'senha', :with => '12345'
@@ -124,9 +148,48 @@ Given("i am at user with login {string} account page") do |string|
 end
 
 When("i click on delete button") do
-  click_link 'Delete Profile'
+  click_link 'Delete'
 end
 
-Then("i see a user deleted sucessfuly message") do
+Then("i see a client deleted sucessfuly message") do
   expect(page).to have_content('Cliente Removido com Sucesso')
+end
+
+ #funcionarios --------------------------------------------------------------------------------------------------------
+
+Given("i am at register admin page") do
+  entrarPagCadastAdmin()
+end
+
+When("i fill name field {string} id field {string} phone field {string} cellphone field {string} email field {string} password field {string} role field {string}") do |string, string2, string3, string4, string5, string6, string7|
+  preencherAdmin(string,string2,string3,string4,string5,string6,string7)
+end
+
+Given("i am at admin of login {string} update page") do |string|
+  logInNewAdmin(string)
+  click_link 'Edit Staff'
+end
+
+Given("i am at admin with login {string} account page") do |string|
+  logInNewAdmin(string)
+end
+
+Then("i see a admin deleted sucessfuly message") do
+  expect(page).to have_content('Funcionario Removido Com Sucesso')
+end
+
+Then ("i see an empty role message") do
+  expect(page).to have_content('Cargo nao pode ser em branco')
+end
+
+Then ("i see an role already taken message") do
+  expect(page).to have_content('-Sistema Já Possui Um Gerente')
+end
+
+Then ("i see an admin registered successfuly message") do
+  expect(page).to have_content('Funcionario Criado Com Sucesso')
+end
+
+Then ("i see an admin updated successfuly message") do
+  expect(page).to have_content('Funcionario Atualizado Com Sucesso')
 end

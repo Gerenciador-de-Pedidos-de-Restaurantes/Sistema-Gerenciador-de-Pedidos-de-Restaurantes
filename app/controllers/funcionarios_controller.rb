@@ -1,15 +1,6 @@
 class FuncionariosController < ApplicationController
   respond_to? :js, :html
 
-  @@resultadoPositivoFuncionario= ""
-
-  def self.getResultadoPositivoFuncionario
-    @@resultadoPositivoFuncionario
-  end
-  def self.setResultadoPositivoFuncionario valor
-    @@resultadoPositivoFuncionario = valor
-  end
-
   def index
     @funcionario = Funcionario.new
 
@@ -26,32 +17,19 @@ class FuncionariosController < ApplicationController
   end
 
   def update
-    id = nil
-    if params[:id] == "perfil"
-      id = Pessoa.get_pessoa_logada.id
-    else
-      id = params[:id]
-    end
-    @funcionario = Funcionario.find(id)
+    @funcionario = Funcionario.find(params[:id])
     funcionarioAux = Funcionario.new(funcionario_params)
-    if funcionarioAux.cargo != nil && funcionarioAux.cargo.downcase == "gerente"
-      @@resultadoPositivoFuncionario = "erro-O sistema já tem um gerente"
-      render 'funcionarios/index'
-    elsif @funcionario.update(funcionario_params)
-      if params[:id] == "perfil"
-        @@resultadoPositivoFuncionario = "Perfil Atualizado";
-        Pessoa.setPessoaLogada(@funcionario)
-        redirect_to funcionarios_perfil_path
+    respond_to do |format|
+      if funcionarioAux.cargo.downcase == "gerente"
+        format.html { redirect_to edit_funcionario_path, notice: '-Sistema Já Possui Um Gerente' }
+        format.json { render :edit, status: :ok, location: @funcionario }
+      elsif @funcionario.update(funcionario_params)
+        format.html { redirect_to edit_funcionario_path, notice: 'Funcionario Atualizado Com Sucesso' }
+        format.json { render :edit, status: :ok, location: @funcionario }
       else
-        @@resultadoPositivoFuncionario = "Funcionário Atualizado";
-        redirect_to funcionarios_path
+        format.html {render :edit}
       end
-    else
-      if params[:id] == "perfil"
-        render 'funcionarios/perfil'
-      else
-        render 'funcionarios/index'
-      end
+
     end
   end
 
@@ -60,29 +38,33 @@ class FuncionariosController < ApplicationController
     @funcionario.tipo = 1
     @funcionario.inativo = 0
 
-    if @funcionario.cargo == "gerente"
-      @@resultadoPositivoFuncionario = "erro-O sistema já tem um gerente"
-      render 'funcionarios/index'
-    elsif @funcionario.save
-      @@resultadoPositivoFuncionario = "Funcionário salvo"
-      redirect_to
-    else
-      render 'funcionarios/index'
+    respond_to do |format|
+      if (@funcionario.cargo.downcase == "gerente")
+        format.html { redirect_to funcionarios_path, notice: '-Sistema Já Possui Um Gerente' }
+        format.json { render :index, status: :ok, location: @funcionario }
+      elsif @funcionario.save
+        format.html { redirect_to funcionarios_path, notice: 'Funcionario Criado Com Sucesso' }
+        format.json { render :index, status: :ok, location: @funcionario }
+      else
+        format.html { render :index }
+      end
     end
 
   end
 
   def destroy
     @funcionario = Funcionario.find(params[:id])
-    @funcionario.update(tipo: 0)
-    @@resultadoPositivoFuncionario = "Funcionário Deletado";
-    redirect_to logins_index_path
+    #@funcionario.inativo = 1
+    @funcionario.destroy
+    respond_to do |format|
+      format.html { redirect_to logins_url, notice: 'Funcionario Removido Com Sucesso' }
+      format.json { head :no_content }
+    end
   end
 
   private
 
-
   def funcionario_params
-    params.require(:funcionario).permit(:nome, :identificador, :telefone, :celular, :email, :senha)
+    params.require(:funcionario).permit(:nome, :identificador, :telefone, :celular, :email, :senha, :cargo)
   end
 end

@@ -24,7 +24,7 @@ class ClientesController < ApplicationController
         format.json { render :edit, status: :ok, location: @cliente }
       else
         format.html { render :edit }
-        #format.json { render json: @cliente.errors, status: :unprocessable_entity }
+        format.json { render json: @cliente.errors, status: :unprocessable_entity }
       end
     end
 
