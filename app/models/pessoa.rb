@@ -1,4 +1,5 @@
 class Pessoa < ApplicationRecord
+  has_many :orders
   validates :nome, presence: {message: ' nao pode ser em branco' },
                    length: { minimum: 3, too_short: 'deve ter pelo menos 3 caracteres' }
   validates :identificador, presence: {message: ' nao pode ser em branco' },

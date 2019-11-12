@@ -21,7 +21,6 @@ class MenuscController < ApplicationController  #controller dos cardapios de cli
   def send_order
     #mandar um email com o pedido
     @info = params[:street]
-    puts @info
     redirect_to menusc_index_path
   end
 end

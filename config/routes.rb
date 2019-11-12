@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   get 'funcionarios/menus'
 
+  get 'orders/index'
+  put 'orders/index'
+
   #post 'menus/order'
 
   put 'menus/add_item'
@@ -34,13 +37,11 @@ Rails.application.routes.draw do
   post 'menusc/adress'
   get '/menusc/adress'
 
-
-
-
-
   resources :contums
   resources :funcionarios
-  resources :clientes
+  resources :clientes do
+    resources :orders
+  end
   resources :logins
   resources :menus
   resources :menusc

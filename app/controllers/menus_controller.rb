@@ -52,28 +52,46 @@ class MenusController < ApplicationController
 
   def add_item
     @item = params[:new_item]
-    if @item != ''
-      @@menu_atual.item << @item
-      @@menu_atual.item.uniq
-      @@menu_atual.save
+    duplicate = false
+    if @@menu_atual.item.length != 0
+      @@menu_atual.item.each do |i|
+        if (i == @item)
+          duplicate = true
+        end
+      end
     end
-    redirect_to request.referrer
+    respond_to do |format|
+      if (duplicate == true)
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Already Exists' }
+        format.json { render :show, status: :ok, location: @menu }
+      elsif @item != ''
+        @@menu_atual.item << @item
+        @@menu_atual.save
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Created with Sucess'}
+      else
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: "Item Can't Be Blank" }
+        format.json { render :show, status: :ok, location: @menu }
+      end
+    end
   end
 
   def delete_item
     itens_atuais = params[:id_itens]
-    if itens_atuais != nil
-      itens_atuais.each do |i|
-        (@@menu_atual.item).delete(i)
+      unless itens_atuais.nil?
+        itens_atuais.each do |i|
+          (@@menu_atual.item).delete(i)
+        end
       end
-      @@menu_atual.save
-    end
-    redirect_to request.referrer
+      respond_to do |format|
+        if (@@menu_atual.save)
+          format.html { return redirect_to menu_path(@@menu_atual.id), notice: 'Item Removed with Sucess' }
+          format.json { render :show, status: :ok, location: @menu }
+        end
+      end
   end
 
   private
   def menu_params
     params.require(:menu).permit(:title, :description)
   end
-
 end
