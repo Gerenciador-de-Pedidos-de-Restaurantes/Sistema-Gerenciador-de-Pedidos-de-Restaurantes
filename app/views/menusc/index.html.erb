@@ -1,3 +1,6 @@
 <h1>Listing Menus Client</h1>
 <%= render 'form_menu_cliente' %>
 <%= link_to 'back', clientes_perfil_path %>
+
+<!--Mostra quantos pedidos a pessoa fez (apenas para provar que a relacao de pessoa com pedido existe)-->
+<p># of orders by <%= Pessoa.get_pessoa_logada.nome %>: <%= Pessoa.get_pessoa_logada.orders.size %></p>
