@@ -23,4 +23,8 @@
   <p>
     <%= submit_tag 'send' %>
   </p>
+  <%=
+    Pessoa.get_pessoa_logada.orders.build(menuTitle: 'menuTitle', street: :street).save
+  %>
 <%end %>
+
