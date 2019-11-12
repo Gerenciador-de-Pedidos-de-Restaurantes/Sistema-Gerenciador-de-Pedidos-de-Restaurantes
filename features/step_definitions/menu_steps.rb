@@ -88,33 +88,33 @@ Given("i am at menu with title {string} page") do |string|
   click_link string
 end
 
-When("i fill item field with {string}") do |string|
-  fill_in 'new_item', :with => string
-end
+#When("i fill item field with {string}") do |string|
+  #fill_in 'new_item', :with => string
+#end
 
-When("i click on the add button") do
-  click_button "Add"
-end
+#When("i click on the add button") do
+  #click_button "Add"
+#end
 
-When ("i click on the add button {string}" ) do |string|
-  click_button "Add"
-  fill_in 'new_item', :with => string
-  click_button "Add"
-end
+#When ("i click on the add button {string}" ) do |string|
+  #click_button "Add"
+  #fill_in 'new_item', :with => string
+  #click_button "Add"
+#end
 
-Then("i see an item created sucessfuly message") do
-  expect(page).to have_content('Item Created with Sucess')
-end
+#Then("i see an item created sucessfuly message") do
+  #expect(page).to have_content('Item Created with Sucess')
+#end
 
-Then("i see an empty item error message") do
-  expect(page).to have_content("Item Can't Be Blank")
-end
+#Then("i see an empty item error message") do
+  #expect(page).to have_content("Item Can't Be Blank")
+#end
 
-Given("i create a item named {string}") do |string|
-  fill_in "item", :with => string
-  click_button "Add"
-end
+#Given("i create a item named {string}") do |string|
+  #fill_in "new_item", :with => string
+  #click_button "Add"
+#end
 
-Then("i see an item duplicated error message") do
-  expect(page).to have_content('Item Already Exists')
-end
+#Then("i see an item duplicated error message") do
+  #expect(page).to have_content('Item Already Exists')
+#end

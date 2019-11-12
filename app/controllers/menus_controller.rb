@@ -51,12 +51,6 @@ class MenusController < ApplicationController
   end
 
   def add_item
-    id = ''
-    @menus.each do |menu|
-      if menu == @@menu_atual
-        id = menu.id.to_s
-      end
-    end
     @item = params[:new_item]
     duplicate = false
     if @@menu_atual.item.length != 0
@@ -68,14 +62,14 @@ class MenusController < ApplicationController
     end
     respond_to do |format|
       if (duplicate == true)
-        format.html { return redirect_to menu_path(id), notice: 'Item Already Exists' }
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Already Exists' }
         format.json { render :show, status: :ok, location: @menu }
       elsif @item != ''
         @@menu_atual.item << @item
         @@menu_atual.save
-        format.html { return redirect_to menu_path(id), notice: 'Item Created with Sucess'}
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Created with Sucess'}
       else
-        format.html { return redirect_to menu_path(id), notice: "Item Can't Be Blank" }
+        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: "Item Can't Be Blank" }
         format.json { render :show, status: :ok, location: @menu }
       end
     end
