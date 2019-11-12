@@ -1,25 +1,105 @@
-<p>
-  <strong>Title:</strong>
-  <%= @menu.title %>
-</p>
+<head>
+  <style type="text/css">
+    .buttonAdd {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #32CD32;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      text-decoration: none;
+    }
+    .buttonDelete {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: red;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      text-decoration: none;
+    }
+    .buttonBack {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #32CD32;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      text-decoration: none;
+    }
+    #customers {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    #customers tr{background-color: #f2f2f2;}
+    #customers tr:hover {background-color: #ddd;}
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+    body{
+      background-image:url(https://scontent.fmcz2-2.fna.fbcdn.net/v/t1.0-9/205071_107310262685966_7582976_n.jpg?_nc_cat=103&_nc_oc=AQmZ2_iRAgjx_fWi7MhpOmOsFH4W1ihm-5zB3Srk7M7hKsUDU-oYhyt2tI2OjOWzMQk&_nc_ht=scontent.fmcz2-2.fna&oh=8eab371d0d8fb2cbc55fb80c4b7815c7&oe=5E489E09);
+      background-size: 50%;
+    }
+    div {
+      background-color: rgba(0, 0, 0, 0.9)
+    }
+    h1.estiloLabel{
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
+<body><div>
+  <center><h1 class="estiloLabel">
+    <strong>Title:</strong>
+    <%= @menu.title %>
+  </h1>
 
-<%= form_tag menus_delete_item_path , :method => :put do %>
-  <table>
-    <% (@menu.item).each do |item| %>
-      <tr>
-        <td><%= check_box_tag 'id_itens[]', item%></td>
-        <td><%=item%></td>
-      </tr>
-    <% end %>
-  </table>
-<%=  button_to  'Delete' %>
-<%end %>
+  <%= form_tag menus_delete_item_path , :method => :put do %>
+    <table id="customers">
+      <% (@menu.item).each do |item| %>
+        <tr>
+          <td><%= check_box_tag 'id_itens[]', item%>
+          <%=item%></td>
+        </tr>
+      <% end %>
+      <td><center><button class="buttonDelete">Delete</button></center></td>
+    </table>
 
-<!---adicionar item:--->
-<%= form_tag menus_add_item_path, model: @menu, :method => :put do %>
-  <%= text_field_tag 'new_item' %>
-  <%=  button_to  'Add Item' %>
-<%end %>
-<%= link_to 'Back', menus_path %>
-
-<label class="notice"><%= notice %></label>
+  <%end %>
+  <br>
+  <!---adicionar item:--->
+  <%= form_tag menus_add_item_path, model: @menu, :method => :put do %>
+    <%= text_field_tag 'new_item' %>
+    <button class="buttonAdd"> Add Item </button>
+  <%end %></center>
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Back', menus_path, class: 'buttonBack', style:'height: 23px;' %><br><br>
+</div></body>

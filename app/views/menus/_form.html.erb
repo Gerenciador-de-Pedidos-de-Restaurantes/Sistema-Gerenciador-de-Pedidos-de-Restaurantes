@@ -1,31 +1,65 @@
+<html>
+<head>
+  <style type="text/css">
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #32CD32;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 5px;
+      width: 110px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      text-decoration: none;
+    }
+    label.warning{
+      color: red;
+      text-align: center;
+    }
+    label {
+      color: white;
+      text-align: center;
+    }
+    h1.estiloLabel{
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
+<body>
 <%= form_with model: @menu, local: true do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title%>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description,cols:'60',rows:'10'  %>
+  </p>
+
+  <br><button class="button"><%= form.submit%></button>
 
   <% if @menu.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@menu.errors.count, "error") %> prohibited
-        this article from being saved:
+        <label class="warning"><%= pluralize(@menu.errors.count, "error") %> prohibited</label>
+          <label class="warning"> this article from being saved:</label>
       </h2>
       <ul>
         <% @menu.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <center><label class="warning">-<%= msg %></label></center>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-
 <% end %>
+</body>
+</html>

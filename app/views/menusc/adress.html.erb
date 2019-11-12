@@ -1,30 +1,64 @@
-<%= form_tag menusc_send_order_path :method => :put do %>
-  <p>Adress For Delivery</p>
-  <p>
-    <%= label :street, 'street' %><br>
-    <%= text_field :street,'street' %>
-  </p>
+<head>
+  <style type="text/css">
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #32CD32;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 8px;
+      width: 150px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      text-decoration: none;
+    }
+    body{
+      background-image:url(https://scontent.fmcz2-2.fna.fbcdn.net/v/t1.0-9/205071_107310262685966_7582976_n.jpg?_nc_cat=103&_nc_oc=AQmZ2_iRAgjx_fWi7MhpOmOsFH4W1ihm-5zB3Srk7M7hKsUDU-oYhyt2tI2OjOWzMQk&_nc_ht=scontent.fmcz2-2.fna&oh=8eab371d0d8fb2cbc55fb80c4b7815c7&oe=5E489E09);
+      background-size: 50%;
+    }
+    div {
+      background-color: rgba(0, 0, 0, 0.9)
+    }
+    label {
+      color: white;
+      text-align: center;
+    }
+    h1.estiloLabel{
+      font-weight:bold;
+      font-style:italic;
+      color:white;
+    }
+  </style>
+</head>
 
-  <p>
-    <%= label :block, 'block' %><br>
-    <%= text_field :block , 'block'%>
-  </p>
+<body><div>
+  <%= form_tag menusc_send_order_path :method => :put do %>
+    <br><center><h1 class="estiloLabel">Adress For Delivery</h1>
+    <p>
+      <%= label :street, 'street' %><br>
+      <%= text_field :street,'street' %>
+    </p>
 
-  <p>
-    <%= label :number , 'number'%><br>
-    <%= number_field :number, 'number' %>
-  </p>
+    <p>
+      <%= label :block, 'block' %><br>
+      <%= text_field :block , 'block'%>
+    </p>
 
-  <p>
-    <%= label :adicional_info, 'adicional_info' %><br>
-    <%= text_area :adicional_info , 'adicional_info'%>
-  </p>
+    <p>
+      <%= label :number , 'number'%><br>
+      <%= number_field :number, 'number' %>
+    </p>
 
-  <p>
-    <%= submit_tag 'send' %>
-  </p>
-  <%=
-    Pessoa.get_pessoa_logada.orders.build(menuTitle: 'menuTitle', street: :street).save
-  %>
-<%end %>
+    <p>
+      <%= label :adicional_info, 'adicional_info' %><br>
+      <%= text_area :adicional_info , 'adicional_info',cols:'30',rows:'8'%>
+    </p>
 
+
+      <button class="button">send</button><br><br>
+  <%end %></center>>
+</div>
+</body>
