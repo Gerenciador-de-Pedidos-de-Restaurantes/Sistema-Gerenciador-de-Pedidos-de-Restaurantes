@@ -81,4 +81,10 @@ class FuncionarioTest < ActiveSupport::TestCase
     funcionario = Funcionario.new nome:'David', identificador:'14725836910', telefone:'8735334268', celular:'3698521472', email:'david@gmail.com', senha:'65423', cargo: ''
     assert_not funcionario.save
   end
+
+  test "should destroy employee" do
+    funcionario = Funcionario.new nome:'David', identificador:'14725836910', telefone:'8735334268', celular:'3698521472', email:'david@gmail.com', senha:'321', cargo: 'cozinheiro'
+    funcionario.save
+    assert funcionario.destroy
+  end
 end

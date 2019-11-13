@@ -76,4 +76,10 @@ class ClienteTest < ActiveSupport::TestCase
     cliente = Cliente.new nome:'David', identificador:'14725836910', telefone:'8735334268', celular:'3698521472', email:'david@gmail.com', senha:'321'
     assert_not cliente.save
   end
+
+  test "should destroy client" do
+    cliente = Cliente.new nome:'David', identificador:'14725836910', telefone:'8735334268', celular:'3698521472', email:'david@gmail.com', senha:'321'
+    cliente.save
+    assert cliente.destroy
+  end
 end

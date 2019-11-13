@@ -62,14 +62,14 @@ class MenusController < ApplicationController
     end
     respond_to do |format|
       if (duplicate == true)
-        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Already Exists' }
+        format.html { return redirect_to '/menus/'+@@menu_atual.id.to_s, notice: 'Item Already Exists' }
         format.json { render :show, status: :ok, location: @menu }
       elsif @item != ''
         @@menu_atual.item << @item
         @@menu_atual.save
-        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: 'Item Created with Sucess'}
+        format.html { return redirect_to '/menus/'+@@menu_atual.id.to_s, notice: 'Item Created with Sucess'}
       else
-        format.html { return redirect_to menu_path(@@menu_atual.id.to_s), notice: "Item Can't Be Blank" }
+        format.html { return redirect_to '/menus/'+@@menu_atual.id.to_s, notice: "Item Can't Be Blank" }
         format.json { render :show, status: :ok, location: @menu }
       end
     end

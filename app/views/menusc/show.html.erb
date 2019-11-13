@@ -64,6 +64,16 @@
       background-color: #4CAF50;
       color: white;
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
+
+    label.warning{
+      color: red;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -89,6 +99,8 @@
     <%= number_field_tag 'num_people', nil, min: 1%>
 
     <p><button class="button"> Order </button></p>
+
+    <p id="notice"><label class="warning"><%= notice %></label></p>
   <%end %>
 </center>
   &nbsp;&nbsp;&nbsp;<%= link_to 'Cancel', menusc_index_path, class: 'buttonCancel', style:'height: 23px;'%>

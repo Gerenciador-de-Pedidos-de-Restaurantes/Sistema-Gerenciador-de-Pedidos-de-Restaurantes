@@ -31,6 +31,11 @@
       font-style:italic;
       color:white;
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -39,26 +44,28 @@
     <br><center><h1 class="estiloLabel">Adress For Delivery</h1>
     <p>
       <%= label :street, 'street' %><br>
-      <%= text_field :street,'street' %>
+      <%= text_field :street,'street', id:"street" %>
     </p>
 
     <p>
       <%= label :block, 'block' %><br>
-      <%= text_field :block , 'block'%>
+      <%= text_field :block , 'block', id:"block"%>
     </p>
 
     <p>
       <%= label :number , 'number'%><br>
-      <%= number_field :number, 'number' %>
+      <%= number_field :number, 'number', id:"number" %>
     </p>
 
     <p>
       <%= label :adicional_info, 'adicional_info' %><br>
-      <%= text_area :adicional_info , 'adicional_info',cols:'30',rows:'8'%>
+      <%= text_area :adicional_info , 'adicional_info',cols:'30',rows:'8', id:"adicional_info"%>
     </p>
 
 
       <button class="button">send</button><br><br>
+
+  <p id="notice"><label class="notice"><%= notice %></label></p>
   <%end %></center>>
 </div>
 </body>

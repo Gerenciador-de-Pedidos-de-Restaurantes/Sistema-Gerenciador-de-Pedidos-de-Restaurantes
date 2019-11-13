@@ -75,6 +75,11 @@
       font-style:italic;
       color:white;
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 <body><div>
@@ -100,6 +105,10 @@
   <%= form_tag menus_add_item_path, model: @menu, :method => :put do %>
     <%= text_field_tag 'new_item' %>
     <button class="buttonAdd"> Add Item </button>
+      <p id="notice"><label class="notice"><%= notice %></label></p>
   <%end %></center>
+
   <br>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Back', menus_path, class: 'buttonBack', style:'height: 23px;' %><br><br>
+
+
 </div></body>

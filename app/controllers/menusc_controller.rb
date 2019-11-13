@@ -15,7 +15,18 @@ class MenuscController < ApplicationController  #controller dos cardapios de cli
     @itens = params[:id_itens]
     @data_entrega = params[:bora]['order_date'] #seleciona 'order_date' do dicionario passado
     @qdd_pessoas = params[:num_people]
-    redirect_to menusc_adress_path
+    respond_to do |format|
+      if @qdd_pessoas == ''
+        format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: 'quantidade de pessoas não pode ser vazio' }
+        format.json { render :new, status: :ok, location: @qdd_pessoas }
+      elsif Integer(@qdd_pessoas) > 50
+        format.html { redirect_to menusc_adress_path, notice: 'você receberá um desconto' }
+        format.json { render json: @qdd_pessoas.errors, status: :unprocessable_entity }
+      else
+        format.html { redirect_to menusc_adress_path }
+      end
+
+    end
   end
 
   def send_order
