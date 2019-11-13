@@ -27,6 +27,11 @@
     div {
       background-color: rgba(0, 0, 0, 0.9)
     }
+
+    label.notice {
+      color: lime;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -35,5 +40,7 @@
   <h1 class="estiloLabel">Listing Menus Client</h1>
   <%= render 'form_menu_cliente' %>
   <br><%= link_to 'back', clientes_perfil_path, class: 'buttonNormal', style:'height: 23px;' %>
+
+    <p id="notice"><label class="notice"><%= notice %></label></p>
   </center><br>
 </div></body>
