@@ -65,12 +65,13 @@ class Pessoa < ApplicationRecord
   def self.verificar_cadastro_gerente
     resultado = false
     funcionarios = Funcionario.listaFuncionariosAtivo
-    funcionarios.each do |funcionario|
-      if funcionario.cargo == "gerente"
-        resultado = true
-        break
-      end
-    end
+    #funcionarios.each do |funcionario|
+      #if funcionario.cargo == "gerente"
+        #resultado = true
+        #break
+      #end
+    #end
+
   
     if resultado == false
       funcionario = Pessoa.new nome:"admin", identificador:"99999999999", telefone:"00000000000", celular:"00000000000",
