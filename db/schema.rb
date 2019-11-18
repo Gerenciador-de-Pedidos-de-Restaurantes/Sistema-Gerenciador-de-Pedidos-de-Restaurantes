@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20191112084747) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "menus", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20191112084747) do
   create_table "orders", force: :cascade do |t|
     t.string "menuTitle"
     t.string "street"
-    t.integer "pessoa_id"
+    t.bigint "pessoa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pessoa_id"], name: "index_orders_on_pessoa_id"
@@ -43,4 +46,5 @@ ActiveRecord::Schema.define(version: 20191112084747) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "pessoas"
 end
