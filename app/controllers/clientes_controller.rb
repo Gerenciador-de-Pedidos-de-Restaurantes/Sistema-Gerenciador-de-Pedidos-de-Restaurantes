@@ -49,7 +49,6 @@ class ClientesController < ApplicationController
 
   def destroy
     @cliente = Cliente.find(params[:id])
-    #@cliente.update(inativo: 1)
     @clientes = Pessoa.all
     @clientes.delete(@cliente)
     @cliente.destroy
