@@ -42,7 +42,7 @@ When("i click submit button") do
 end
 
 Then("i see a empty quantity error message") do
-  expect(page).to have_content("quantidade de pessoas não pode ser vazio")
+  expect(page).to have_content("# of people cant be blank")
 end
 
 Given("i fill people quantity with {string}") do |string|
@@ -50,7 +50,7 @@ Given("i fill people quantity with {string}") do |string|
 end
 
 Then("i see a descount message") do
-  expect(page).to have_content("você receberá um desconto")
+  expect(page).to have_content("You will get a discount")
 end
 
 Given("i am at adress page") do
