@@ -14,8 +14,6 @@ class AdressesController < ApplicationController
 
   # GET /adresses/new
   def new
-    @cliente = Cliente.find(params[:id])
-    @order = Order.find(params[:id])
     @adress = Adress.new
   end
 
@@ -23,11 +21,19 @@ class AdressesController < ApplicationController
   def edit
   end
 
+  def verificando
+    puts 'oi'
+  end
+
   # POST /adresses
   # POST /adresses.json
   def create
-    @adress = Adress.new(adress_params)
-
+    @cliente = Cliente.new id: '300', nome:'David', identificador:'14725836910', telefone:'8735334268', celular:'3698521472', email:'david@gmail.com', senha:'65423'
+    @cliente.save
+    @order = @cliente.orders.build(id: '800', menuTitle: 'Senor Froggy', street: 'Elm Street')
+    @cliente.save
+    #@adress = Adress.new(street: :street, block: :block, number: :number, additional_info: :additional_info, order_id: @order)
+    @adress = @order.adresses.build(street: :street, block: :block, number: :number, additional_info: :additional_info, order_id: @order.id)
     respond_to do |format|
       if @adress.save
         format.html { redirect_to @adress, notice: 'Adress was successfully created.' }

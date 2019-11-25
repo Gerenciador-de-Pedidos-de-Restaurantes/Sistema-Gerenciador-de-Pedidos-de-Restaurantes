@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   get 'orders/index'
   put 'orders/index'
 
+  get 'adresses/verificando'
+  put 'adresses/verificando'
+
+
+
   #post 'menus/order'
 
   put 'menus/add_item'
@@ -40,11 +45,16 @@ Rails.application.routes.draw do
   resources :contums
   resources :funcionarios
   resources :clientes do
-    resources :orders
+    resources :orders do
+      resources :adresses, :except => [:update, :destroy]
+    end
   end
   resources :logins
   resources :menus
   resources :menusc
+
+
+
 
   root 'logins#index'
 end
