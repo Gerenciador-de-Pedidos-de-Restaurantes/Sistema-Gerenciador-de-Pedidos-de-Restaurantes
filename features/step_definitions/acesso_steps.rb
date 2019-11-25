@@ -53,7 +53,7 @@ When("i click on the register button") do
 end
 
 Then("i see an client registered successfuly message") do
-  expect(page).to have_content('Cliente Salvo com Sucesso')
+  expect(page).to have_content('Client Successfully Saved')
 end
 
 Then("i see an empty name error message") do
@@ -133,7 +133,7 @@ When("i click on the update button") do
 end
 
 Then("i see an successful update message") do
-  expect(page).to have_content('Cliente Atualizado com Sucesso')
+  expect(page).to have_content('Client Successfully Updated')
 end
 
 Given("i am at client with login {string} account page") do |string|
@@ -152,7 +152,7 @@ When("i click on delete button") do
 end
 
 Then("i see a client deleted sucessfuly message") do
-  expect(page).to have_content('Cliente Removido com Sucesso')
+  expect(page).to have_content('Client Successfully Removed')
 end
 
  #funcionarios --------------------------------------------------------------------------------------------------------
@@ -175,7 +175,7 @@ Given("i am at admin with login {string} account page") do |string|
 end
 
 Then("i see a admin deleted sucessfuly message") do
-  expect(page).to have_content('Funcionario Removido Com Sucesso')
+  expect(page).to have_content('Employee Successfully Removed')
 end
 
 Then ("i see an empty role message") do
@@ -183,13 +183,13 @@ Then ("i see an empty role message") do
 end
 
 Then ("i see an role already taken message") do
-  expect(page).to have_content('-Sistema Já Possui Um Gerente')
+  expect(page).to have_content('System Already Has A Manager')
 end
 
 Then ("i see an admin registered successfuly message") do
-  expect(page).to have_content('Funcionario Criado Com Sucesso')
+  expect(page).to have_content('Employee Successfully Created')
 end
 
 Then ("i see an admin updated successfuly message") do
-  expect(page).to have_content('Funcionario Atualizado Com Sucesso')
+  expect(page).to have_content('Employee Successfully Updated')
 end
