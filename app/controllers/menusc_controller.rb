@@ -17,10 +17,10 @@ class MenuscController < ApplicationController  #controller dos cardapios de cli
     @qdd_pessoas = params[:num_people]
     respond_to do |format|
       if @qdd_pessoas == ''
-        format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: 'quantidade de pessoas não pode ser vazio' }
+        format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: '# of people cant be blank' }
         format.json { render :new, status: :ok, location: @qdd_pessoas }
       elsif Integer(@qdd_pessoas) > 50
-        format.html { redirect_to menusc_adress_path, notice: 'você receberá um desconto' }
+        format.html { redirect_to menusc_adress_path, notice: 'You will get a discount'}
         format.json { render json: @qdd_pessoas.errors, status: :unprocessable_entity }
       else
         format.html { redirect_to menusc_adress_path }
