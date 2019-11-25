@@ -77,17 +77,17 @@ class MenusController < ApplicationController
 
   def delete_item
     itens_atuais = params[:id_itens]
-      unless itens_atuais.nil?
-        itens_atuais.each do |i|
-          (@@menu_atual.item).delete(i)
-        end
+    unless itens_atuais.nil?
+      itens_atuais.each do |i|
+        @@menu_atual.item.delete(i)
       end
-      respond_to do |format|
-        if (@@menu_atual.save)
-          format.html { return redirect_to menu_path(@@menu_atual.id), notice: 'Item Removed with Sucess' }
-          format.json { render :show, status: :ok, location: @menu }
-        end
+    end
+    respond_to do |format|
+      if @@menu_atual.save
+        format.html { return redirect_to menu_path(@@menu_atual.id), notice: 'Item Removed with Sucess' }
+        format.json { render :show, status: :ok, location: @menu }
       end
+    end
   end
 
   private

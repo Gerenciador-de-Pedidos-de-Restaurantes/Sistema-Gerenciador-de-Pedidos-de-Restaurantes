@@ -54,7 +54,6 @@ class FuncionariosController < ApplicationController
 
   def destroy
     @funcionario = Funcionario.find(params[:id])
-    #@funcionario.inativo = 1
     @funcionario.destroy
     respond_to do |format|
       format.html { redirect_to logins_url, notice: 'Funcionario Removido Com Sucesso' }
