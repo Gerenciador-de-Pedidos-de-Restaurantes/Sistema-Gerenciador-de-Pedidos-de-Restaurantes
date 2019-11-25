@@ -61,7 +61,12 @@ class FuncionariosController < ApplicationController
     end
   end
 
+
   private
+
+  def set_funcionario
+    @funcionario = Funcionario.find(params[:id])
+  end
 
   def funcionario_params
     params.require(:funcionario).permit(:nome, :identificador, :telefone, :celular, :email, :senha, :cargo)

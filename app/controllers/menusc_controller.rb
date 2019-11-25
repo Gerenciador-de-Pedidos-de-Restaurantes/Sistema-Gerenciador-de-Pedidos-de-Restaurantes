@@ -12,18 +12,21 @@ class MenuscController < ApplicationController  #controller dos cardapios de cli
 
   #realiza o pedido
   def order
+    @cliente = Pessoa.get_pessoa_logada
     @itens = params[:id_itens]
     @data_entrega = params[:bora]['order_date'] #seleciona 'order_date' do dicionario passado
-    @qdd_pessoas = params[:num_people]
+    @qdd_pessoas = 3
+    @order = @cliente.orders.create(menuTitle: @@menu_atual.title, street: 'Elm Street')
     respond_to do |format|
       if @qdd_pessoas == ''
         format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: '# of people cant be blank' }
         format.json { render :new, status: :ok, location: @qdd_pessoas }
       elsif Integer(@qdd_pessoas) > 50
-        format.html { redirect_to menusc_adress_path, notice: 'You will get a discount'}
+        format.html { redirect_to '/clientes/'+Pessoa.get_pessoa_logada.id.to_s + '/orders/' + @order.id.to_s + '/adresses/new' , notice: 'você receberá um desconto' }
         format.json { render json: @qdd_pessoas.errors, status: :unprocessable_entity }
       else
-        format.html { redirect_to menusc_adress_path }
+        @order.save
+        format.html { redirect_to '/clientes/'+Pessoa.get_pessoa_logada.id.to_s + '/orders/' + @order.id.to_s + '/adresses/new'}
       end
 
     end

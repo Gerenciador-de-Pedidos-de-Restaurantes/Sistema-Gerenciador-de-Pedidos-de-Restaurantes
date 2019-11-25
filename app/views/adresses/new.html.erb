@@ -4,21 +4,20 @@
 
 
   <center>
-  <%= link_to 'Back', adresses_path, class:"button" %>
 
-    <% if @adress.errors.any? %>
-        <h2>
-          <label class="warning"><%= pluralize(@adress.errors.count, "error") %></label>
-          <label class="warning">prohibited this adress from being saved:</label>
-        </h2>
+  <% if @adress.errors.any? %>
+    <h2>
+      <label class="warning"><%= pluralize(@adress.errors.count, "error") %></label>
+      <label class="warning">prohibited this adress from being saved:</label>
+    </h2>
 
-        <ul>
-          <% @adress.errors.full_messages.each do |message| %>
-            <center><label class="warning">-<%= message %></label></center>
-          <% end %>
-        </ul>
-    <% end %>
+    <ul>
+      <% @adress.errors.full_messages.each do |message| %>
+        <center><label class="warning">-<%= message %></label></center>
+      <% end %>
+    </ul>
+  <% end %>
 
-    <p id="notice"><label class="notice"><%= notice %></label></p>
-  </center>
+  <p id="notice"><label class="notice"><%= notice %></label></p>
+</center>
 </div>

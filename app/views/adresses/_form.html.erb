@@ -63,30 +63,31 @@
 </head>
 
 <div>
-  <%= form_with(model: adress, local: true) do |form| %>
+
     <br><center><h1 class="estiloLabel">Adress For Delivery</h1>
 
   <p>
-    <%= form.label :street %><br>
-    <%= form.text_field :street, id: :adress_street %>
+    <label>Street:</label>
+    <%= text_field :street, id: :adress_street %>
   </p>
 
   <p>
-    <%= form.label :block %><br>
-    <%= form.text_field :block, id: :adress_block %>
+    <label>Block:</label>
+    <%= text_field :block, id: :adress_block %>
   </p>
 
   <p>
-    <%= form.label :number %><br>
-    <%= form.text_field :number, id: :adress_number %>
+    <label>Number:</label>
+    <%= text_field :number, id: :adress_number %>
   </p>
 
   <p>
-    <%= form.label :adittional_info, 'adittional_info' %><br>
-    <%= form.text_area :adittional_info , 'adittional_info',cols:'30',rows:'8', id:"adittional_info"%>
+    <label>Information:</label>
+    <%= text_area :additional_info,cols:'30',rows:'8', id:"additional_info"%>
   </p>
+  
+  <%= link_to "Send", menusc_index_path, class:"button" %>
 
-      <br>
-      <%= form.submit %>
 
-  <%end %></center>
+  </center>
+</div>
