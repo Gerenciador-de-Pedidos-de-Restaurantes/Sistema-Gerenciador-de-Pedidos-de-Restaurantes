@@ -20,7 +20,7 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.update(cliente_params)
-        format.html { redirect_to edit_cliente_path, notice: 'Cliente Atualizado com Sucesso' }
+        format.html { redirect_to edit_cliente_path, notice: 'Client Successfully Updated' }
         format.json { render :edit, status: :ok, location: @cliente }
       else
         format.html { render :edit }
@@ -38,7 +38,7 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to clientes_path, notice: 'Cliente Salvo com Sucesso' }
+        format.html { redirect_to clientes_path, notice: 'Client Successfully Saved' }
         format.json { render :index, status: :created, location: @cliente }
       else
         format.html { render :index }
@@ -49,12 +49,11 @@ class ClientesController < ApplicationController
 
   def destroy
     @cliente = Cliente.find(params[:id])
-    #@cliente.update(inativo: 1)
     @clientes = Pessoa.all
     @clientes.delete(@cliente)
     @cliente.destroy
     respond_to do |format|
-      format.html { redirect_to logins_url, notice: 'Cliente Removido com Sucesso' }
+      format.html { redirect_to logins_url, notice: 'Client Successfully Removed' }
       format.json { head :no_content }
     end
   end

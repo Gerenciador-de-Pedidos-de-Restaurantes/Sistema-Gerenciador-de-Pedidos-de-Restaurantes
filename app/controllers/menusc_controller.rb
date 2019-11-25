@@ -19,7 +19,7 @@ class MenuscController < ApplicationController  #controller dos cardapios de cli
     @order = @cliente.orders.create(menuTitle: @@menu_atual.title, street: 'Elm Street')
     respond_to do |format|
       if @qdd_pessoas == ''
-        format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: 'quantidade de pessoas não pode ser vazio' }
+        format.html { redirect_to '/menusc/'+@@menu_atual.id.to_s, notice: '# of people cant be blank' }
         format.json { render :new, status: :ok, location: @qdd_pessoas }
       elsif Integer(@qdd_pessoas) > 50
         format.html { redirect_to '/clientes/'+Pessoa.get_pessoa_logada.id.to_s + '/orders/' + @order.id.to_s + '/adresses/new' , notice: 'você receberá um desconto' }
