@@ -21,10 +21,10 @@ class FuncionariosController < ApplicationController
     funcionarioAux = Funcionario.new(funcionario_params)
     respond_to do |format|
       if funcionarioAux.cargo.downcase == "gerente"
-        format.html { redirect_to edit_funcionario_path, notice: '-Sistema Já Possui Um Gerente' }
+        format.html { redirect_to edit_funcionario_path, notice: 'System Already Has A Manager' }
         format.json { render :edit, status: :ok, location: @funcionario }
       elsif @funcionario.update(funcionario_params)
-        format.html { redirect_to edit_funcionario_path, notice: 'Funcionario Atualizado Com Sucesso' }
+        format.html { redirect_to edit_funcionario_path, notice: 'Employee Successfully Updated' }
         format.json { render :edit, status: :ok, location: @funcionario }
       else
         format.html {render :edit}
@@ -40,10 +40,10 @@ class FuncionariosController < ApplicationController
 
     respond_to do |format|
       if (@funcionario.cargo.downcase == "gerente")
-        format.html { redirect_to funcionarios_path, notice: '-Sistema Já Possui Um Gerente' }
+        format.html { redirect_to funcionarios_path, notice: 'System Already Has A Manager' }
         format.json { render :index, status: :ok, location: @funcionario }
       elsif @funcionario.save
-        format.html { redirect_to funcionarios_path, notice: 'Funcionario Criado Com Sucesso' }
+        format.html { redirect_to funcionarios_path, notice: 'Employee Successfully Created' }
         format.json { render :index, status: :ok, location: @funcionario }
       else
         format.html { render :index }
@@ -56,7 +56,7 @@ class FuncionariosController < ApplicationController
     @funcionario = Funcionario.find(params[:id])
     @funcionario.destroy
     respond_to do |format|
-      format.html { redirect_to logins_url, notice: 'Funcionario Removido Com Sucesso' }
+      format.html { redirect_to logins_url, notice: 'Employee Successfully Removed' }
       format.json { head :no_content }
     end
   end
